@@ -69,5 +69,5 @@ ___
 * 하지만 JSON은 전송받은 데이터의 무결성을 사용자가 직접 검증해야한다.
 * 이에 따라 데이터 검증이 필요한 곳에서는 스키마를 사용하여 데이터의 무결성을 검증할 수 있는 XML이 아직도 사용된다.
 ___
-출처: https://sujl95.tistory.com/59
+출처: https://sujl95.tistory.com/59   
      http://www.tcpschool.com/json/json_intro_xml
