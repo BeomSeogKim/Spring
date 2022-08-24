@@ -71,6 +71,10 @@ ___
     public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
+    @Bean
+    public OrderService orderService() {
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
 ```
 위와 같이 설계하게 되는데 다중 호출이 되는 경우가 발생하지 않을까? 라는 걱정이 생기게 된다. 
 이러한 경우 ConfigClass에 어노테이션 @Configuration을 사용하면 스프링이 알아서 싱글톤 패턴을 유지하게 해준다.
