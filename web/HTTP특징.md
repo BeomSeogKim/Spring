@@ -31,6 +31,24 @@ Stateful(상태유지) 와 Stateless(상태유지하지 않음)의 차이는 다
 
 상태유지의 경우 고객이 주어야하는 정보는 적지만 다른 점원이 올 경우 이해를 제대로 하지 못한다는 점이 존재한다.  
 상태유지를 하지 않을 경우 고객이 주어야하는 정보는 늘어나지만 다른 점원이 와도 이해를 할 수 있다는 장점이 존재한다.  
-이러한 차이로 인해 Stateless는 여러가지 장점을 가지는데 
+이러한 차이로 인해 Stateless는 여러가지 장점을 가지는데 다음과 같은 장점이 있다. 
 1. 중간에 서버가 장애가 나도 다른 서버로 유연하게 요청이 가능하다.
 2. 스케일 아웃- 수평확장에 유리하다. 
+
+로그인 정보나 정보를 유지해야 할 경우에는 Stateful이 필요하지만 그러한 경우가 아닌 경우에는 Stateless로 설게하는 것이 좋은 방법일 것이다. 
+
+## HTTP 메세지 구조 
+http 메세지는 크게 네가지구조를 가진다.
+* start-line 시작 라인
+* header 헤더
+* empty line 공백라인(CRLF)
+* message body
+### 시작라인
+시작라인에는 요청의 경우 request-line = method SP request-target SP HTTP-version CRLF(엔터) 식으로 작성이 되며   
+응답의 경우 HTTP-version SP status-code SP reason-phrase CRLF로 구성된다. 
+HTTP 상태 코드의 경우 200 : 성공 // 400 : 클라이언트 요청 오류 // 500: 서버 내부 오류 로 구성된다. 
+### header 헤더
+헤더에는 field-name ":" OWS field-value OWS식으로 구성된다. 
+HTTP전송에 필요한 모든 부가정보들이 실리게 된다. 
+### message body
+실제 전송할 데이터들이 실린다. HTML 문서, 이미지, 영상 JSON등등 byte로 표현할 수 있는 모든 데이터가 전송가능하다.
