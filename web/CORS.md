@@ -14,4 +14,18 @@ CORS는 교차 출처 리서스 공유라고도 하는데 이는 웹 어플리�
 2. 서버의 응답이 왔을 때 브라우저가 요청한 Origin과 응답한 헤더 Access-Control-Request-Headers의 값을 비교해 유효한 요청이면 리소스를 응답하고
 유효하지 않은 요청이라면 브라우저에서 이를 막고 에러가 발생한다.
 => Simple request는 무엇인가요?   
-Http method가 **GET, HEAD, POST**중 하나이면서 자동으로 설정되는 헤더는 제외하고 설정하는 들만 변경하면서 
+Http method가 **GET, HEAD, POST**중 하나이면서 자동으로 설정되는 헤더는 제외하고 설정할 수 있는 **Accept, Accept-Language, Content-Language**만 변경하면서 
+Content-Type이 다음과 같은 경우
+* application/x-www-form-urlencoded
+* multipart/form-data
+* text/plain   
+Simple requests 라고 부른다. 이 요청은 추가적인 확인 없이 바로 본 요청을 보낸다.
+
+### preflight 요청인 경우
+Prefligh 방식은 요청을 한번에 보내는 것이 아니라 예비 요청과 본 요청으로 나누어서 서버로 전송한다.    
+본 요청을 보내기 전 미리 예비로 보내는 요청을 **Preflight**라고 하며 HTTP 메서드 중 하나인 **OPTIONS**메서드를 사용한다. 
+> Prefligh 요청을 하는 이유
+> 예비 요청을 함으로써 본 요청을 보내기 전 브라우저 스스로가 요청을 보내느 것에 대한 안정성을 확인함에 있다.  
+> 서버는 이 예비 요청에 대한 응답으로 현재 자신이 어떤 것들을 허용하고, 어떤 것들을 금지하고 있는지에 대한 정보를 응답 헤더에 담아 브라우저에게 다시 보내준다.  
+이 때 단순히 Origin에 대한 정보 뿐만 아니라 자신이 예비 요청 이후에 보낼 본 요청에 대한 다른 정보들도 함께 전송한다.  
+그러한 정보에는 어떠한 헤더를 포함할 것인가, 어떤 HTTP 를 사용할 것인가 에 대한 내용이 담겨있다.
